@@ -114,10 +114,93 @@ header {
   right: 0;
   height: 100%;
   padding: 30px;
-  
+  display: flex;
+  flex-direction: column;
+
+  .items{
+    overflow: auto;
+    margin-bottom: 40px;
+  }
+
   h2{
     margin: 0;
   }
+
+  .items{
+    flex: 1;
+  }
+
+  .removeBtn{
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+}
+
+.cartTotalBlock{
+  ul{
+    margin-bottom: 40px !important;
+
+    li{
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+  
+      div {
+        flex: 1;
+        border-bottom: 1px dashed #dfdfdf;
+        height: 1px;
+        position: relative;
+        top: -4px;
+        margin: 0 7px;
+      }
+    }
+  }
+
+  .greenButton{
+    position: relative;
+
+    &:hover{
+      img{
+        transform: translateX(10px);
+      }
+    }
+    
+
+    img{
+      position: absolute;
+      right: 40px;
+      top: 20px;
+      transition: transform 0.15s ease-in-out;
+    }
+  }
+
+
+}
+
+.greenButton{
+  width: 100%;
+    height: 55px;
+    background: #9dd558;
+    border-radius: 18px;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+
+    &:hover{
+      background: lighten(#9dd558, 10%);
+    }
+
+    &:active{
+      background: darken(#9dd558, 10%);
+    }
 }
 
 .cartItem{
@@ -135,13 +218,4 @@ header {
     font-size: 14px;
   }
 
-  .removeBtn{
-    opacity: 0.5;
-    transition: opacity 0.2s ease-in-out;
-    cursor: pointer;
-
-    &:hover{
-      opacity: 1;
-    }
-  }
 }
