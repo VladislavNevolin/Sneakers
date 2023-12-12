@@ -1,3 +1,6 @@
+// 1.24 #4
+
+
 import Card from "./components/Card/Card";
 import Drawer from "./components/Drawer/Drawer";
 import Header from "./components/Header/Header";
@@ -49,7 +52,9 @@ function App() {
 
                 imageURL={obj.imageURL}
 
-                onClick={() => console.log(obj)}
+                onClickFavorite={() => console.log('Добвали в закладки')}
+
+                onClickPlus={() => console.log('Нажали плюс')}
               />
             ))
           }
