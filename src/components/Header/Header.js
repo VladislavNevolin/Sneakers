@@ -1,6 +1,6 @@
 import styles from './Header.module.scss'
 
-export default function Header() {
+export default function Header(props) {
     return(
         <header className="d-flex justify-between align-center p-40">
         <div className="headerLeft d-flex align-center">
@@ -14,7 +14,7 @@ export default function Header() {
         </div>
 
         <ul className="headerRight d-flex">
-          <li className="headerRight_cart mr-30">
+          <li className="headerRight_cart mr-30 cu-p" onClick={props.onClickCart}>
             <img width={18} height={18} src='/img/cartHeader.svg' alt='sneakers' />
 
             <span>10 euro</span>

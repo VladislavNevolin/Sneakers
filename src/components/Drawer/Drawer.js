@@ -1,37 +1,29 @@
 import styles from './Drawer.module.scss'
 
-export default function Drawer() {
+export default function Drawer({ onClose, items = [] }) {
     return (
-        <div style={{ display: 'none' }} className="overlay">
+        <div className="overlay">
             <div className={styles.drawer}>
                 <h2 className="d-flex justify-between mb-30">Shopping Cart
-                    <img className={styles.removeBtn} src='/img/btnRemove.svg' alt='Remove' />
+                    <img className={styles.removeBtn} src='/img/btnRemove.svg' alt='Close Button' onClick={onClose} />
                 </h2>
 
                 <div className={styles.items}>
-                    <div className="cartItem d-flex align-center mb-20">
-                        <img className="mr-20" width={70} height={70} src='/img/sneakers/greenNike.jpg' alt='greenNike' />
+                    {
+                        items.map((obj) => (
+                            <div className="cartItem d-flex align-center mb-20">
+                                <div className="cartItemImg" style={{ backgroundImage: `url(${obj.imageURL})`}}></div>
 
-                        <div className="mr-20 flex">
-                            <p className="mb-5">Men sneakers Nike Blazer Mid Suede</p>
+                                <div className="mr-20 flex">
+                                    <p className="mb-5">{obj.title}</p>
 
-                            <b>150 euro</b>
-                        </div>
+                                    <b>{obj.price} euro</b>
+                                </div>
 
-                        <img className={styles.removeBtn} src='/img/btnRemove.svg' alt='Remove' />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <img className="mr-20" width={70} height={70} src='/img/sneakers/greenNike.jpg' alt='greenNike' />
-
-                        <div className="mr-20 flex">
-                            <p className="mb-5">Men sneakers Nike Blazer Mid Suede</p>
-
-                            <b>150 euro</b>
-                        </div>
-
-                        <img className={styles.removeBtn} src='/img/btnRemove.svg' alt='Remove' />
-                    </div>
+                                <img className={styles.removeBtn} src='/img/btnRemove.svg' alt='Remove' />
+                            </div>
+                        ))
+                    }
                 </div>
 
                 <div className="cartTotalBlock">
