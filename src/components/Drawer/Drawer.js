@@ -20,7 +20,7 @@ export default function Drawer({ onClose, onRemove, items = [] }) {
 
                                         <b>{obj.price} euro</b>
                                     </div>
-
+                                    
                                     <img onClick={() => onRemove(obj.id)} className={styles.removeBtn} src='/img/btnRemove.svg' alt='Remove' />
                                 </div>
                             ))}

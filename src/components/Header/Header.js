@@ -15,7 +15,7 @@ export default function Header(props) {
 
         <ul className="headerRight d-flex">
           <li className="headerRight_cart mr-30 cu-p" onClick={props.onClickCart}>
-            <img width={18} height={18} src='/img/cartHeader.svg' alt='sneakers' />
+            <img width={18} height={18} src='/img/cartHeader.svg' alt='sneakers' className="mr-10" />
 
             <span>10 euro</span>
           </li>

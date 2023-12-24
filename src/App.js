@@ -1,3 +1,5 @@
+// 1.14 №5
+
 import React from "react";
 import axios from "axios";
 import Card from "./components/Card/Card";
@@ -9,6 +11,8 @@ function App() {
 
   const [cartItems, setCartItems] = React.useState([]);
 
+  // const [favorites, setFavorites] = React.useState([]);
+
   const [searchValue, setSearchValue] = React.useState('');
 
   const [cartOpened, setCartOpened] = React.useState(false);
@@ -17,6 +21,7 @@ function App() {
     axios.get('https://65587ef4e93ca47020a961e9.mockapi.io/items').then((res)=>{
       setItems(res.data)
     });
+
     axios.get('https://65587ef4e93ca47020a961e9.mockapi.io/cart').then((res)=>{
       setCartItems(res.data)
     })
@@ -28,10 +33,17 @@ function App() {
   };
 
   const onRemoveItem = (id) => {
-    
-     axios.delete(`https://65587ef4e93ca47020a961e9.mockapi.io/cart/${id}`);
+    axios.delete(`https://65587ef4e93ca47020a961e9.mockapi.io/cart/${id}`);
     setCartItems((prev) => prev.filter((item) => item.id !== id));
-    
+  };
+
+
+
+
+
+  const onAddToFavorite = (obj) => {
+    axios.post('https://65587ef4e93ca47020a961e9.mockapi.io/cart', obj);
+    setCartItems((prev) => [...prev, obj]);
   };
 
   const onChangeSearchValue = (event) => {
