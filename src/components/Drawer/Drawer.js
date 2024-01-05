@@ -1,6 +1,6 @@
 import styles from './Drawer.module.scss'
 
-export default function Drawer({ onClose, onRemove, items = [] }) {
+function Drawer({ onClose, onRemove, items = [] }) {
     return (
         <div className="overlay">
             <div className={styles.drawer}>
@@ -12,7 +12,7 @@ export default function Drawer({ onClose, onRemove, items = [] }) {
                     (
                         <><div className={styles.items}>
                             {items.map((obj) => (
-                                <div className="cartItem d-flex align-center mb-20">
+                                <div key={obj.id} className="cartItem d-flex align-center mb-20">
                                     <div className="cartItemImg" style={{ backgroundImage: `url(${obj.imageURL})` }}></div>
 
                                     <div className="mr-20 flex">
@@ -21,7 +21,10 @@ export default function Drawer({ onClose, onRemove, items = [] }) {
                                         <b>{obj.price} euro</b>
                                     </div>
                                     
-                                    <img onClick={() => onRemove(obj)} className={styles.removeBtn} src='/img/btnRemove.svg' alt='Remove' />
+                                    <img onClick={() => 
+                                        // console.log(obj.id)}
+                                        onRemove(obj.id)}
+                                         className={styles.removeBtn} src='/img/btnRemove.svg' alt='Remove' />
                                 </div>
                             ))}
                         </div>
@@ -65,3 +68,5 @@ export default function Drawer({ onClose, onRemove, items = [] }) {
         </div>
     )
 }
+
+export default Drawer
