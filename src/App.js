@@ -4,19 +4,21 @@ import React from "react";
 import { Route, Routes } from 'react-router-dom';
 import axios from "axios";
 
+import AppContext from "./context";
+
 import Drawer from "./components/Drawer/Drawer";
 import Header from "./components/Header/Header";
+
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 
-export const AppContext =React.createContext([]);
 
 function App() {
   const [items, setItems] = React.useState([]);
 
   const [cartItems, setCartItems] = React.useState([]);
 
-  const [favorites, setFavorites] = React.useState([]);
+  // const [favorites, setFavorites] = React.useState([]);
 
   const [searchValue, setSearchValue] = React.useState('');
 
@@ -43,10 +45,12 @@ function App() {
   }, []);
 
   const onAddToCart = (obj) => {
+    console.log(obj)
     if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
+      
       axios.delete(`https://65587ef4e93ca47020a961e9.mockapi.io/cart/${obj.id}`);
 
-      setCartItems(prev => prev.filter(item => Number(item.id) !== Number(obj.id)));
+      setCartItems(prev => prev.filter((item) => Number(item.id) !== Number(obj.id)));
     } else {
       axios.post('https://65587ef4e93ca47020a961e9.mockapi.io/cart', obj);
 
@@ -54,14 +58,19 @@ function App() {
     }
   };
 
-  const onRemoveItem = async (id) => {
-    try {
-      await axios.delete(`https://65587ef4e93ca47020a961e9.mockapi.io/cart/${id}`);
-
-      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
-    } catch (e) {
-      console.log(e)
-    }
+  const onRemoveItem =  (id) => {
+    console.log(id)
+    // try {
+       axios.delete(`https://65587ef4e93ca47020a961e9.mockapi.io/cart/${id}`);
+ 
+      setCartItems((prev) => 
+      // console.log(prev)
+      prev.filter((item) => Number(item.id) !== Number(id))
+      );
+ 
+    // } catch (e) {
+    //   console.log(id)
+    // }
   };
 
   const onAddToFavorite = (obj) => {
@@ -74,6 +83,9 @@ function App() {
     setSearchValue(event.target.value)
   };
 
+  const isItemAdded = (id) => {
+    return cartItems.some((obj) => Number(obj.id) === Number(id))
+  }
 
   // let sneakers = [
   //   {
@@ -174,8 +186,9 @@ function App() {
   // };
 
   return (
-    <AppContext.Provider value={{items, cartItems}}>
+    <AppContext.Provider value={{items, cartItems, isItemAdded, setCartItems, setCartOpened}}>
     <div className="wrapper clear">
+    
 
       {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove={onRemoveItem} />}
 
@@ -189,7 +202,7 @@ function App() {
 
             cartItems={cartItems}
 
-            favorites={favorites}
+            // favorites={favorites}
 
             searchValue={searchValue}
 

@@ -1,6 +1,10 @@
+import React from "react";
 import Card from "../components/Card/Card";
 
-export default function Home ({ items, cartItems, searchValue, setSearchValue, onAddToCart, onChangeSearchValue, isLoading}) {
+
+export default function Home ({ items, searchValue, setSearchValue, onAddToCart, onChangeSearchValue, isLoading}) {
+
+  
   const renderItems =() =>{
     const filteredItems = items.filter(item => 
       item.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -14,8 +18,6 @@ export default function Home ({ items, cartItems, searchValue, setSearchValue, o
 
         onPlus={(obj) => onAddToCart(obj)}
 
-        added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
-
         loading={isLoading}
 
         {...item}
@@ -28,6 +30,7 @@ export default function Home ({ items, cartItems, searchValue, setSearchValue, o
   return(
         
         <div className="content p-40">
+          
         <div className="d-flex align-center justify-between mb-40">
           <h1 className="">{searchValue ? `Search by request: "${searchValue}"` : "All sneakers"} </h1>
 
