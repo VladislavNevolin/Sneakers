@@ -7,10 +7,8 @@ export default function Card({ id, title, imageURL, price, onPlus, loading=false
     const { isItemAdded } = React.useContext(AppContext);
     // const [isFavorite, setIsFavorite] = React.useState();
 
-    const obj = { id, parentId: id, title, imageURL, price };
-
     const onClickPlus = () => {
-        onPlus(obj);
+        onPlus({ id, title, imageURL, price  });
     }
 
     // const onClickFavorite = () => {
