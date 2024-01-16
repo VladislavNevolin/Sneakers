@@ -1,8 +1,8 @@
 import React from "react";
 import AppContext from "../../context";
 
-export default function Info({ title, description, }) {
-    const {} = React.useContext(AppContext)
+export default function Info({ title, image, description, }) {
+    const {setCartOpened} = React.useContext(AppContext)
 
     return (
         <div className="cartEmpty d-flex align-center justify-center flex-column flex">
@@ -12,7 +12,7 @@ export default function Info({ title, description, }) {
 
             <p className="opacity-6">{description}.</p>
 
-            <button onClick={onClick} className="greenButton">
+            <button onClick={() => setCartOpened(false)} className="greenButton">
                 <img src="/img/arrow.svg" alt="Arrow" />
 
                 Вернуться назад
